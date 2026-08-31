@@ -10,14 +10,14 @@ inherit autotools coverity
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SRC_URI = "git://gerrit.mediatek.inc/gateway/rdk-b/rdkb_hal;protocol=https;branch=master;destsuffix=git/ \
+SRC_URI = "git://git01.mediatek.com/filogic/rdk-b/rdkb_hal;protocol=https;branch=master;destsuffix=git/ \
         file://LICENSE;subdir=git \
         "
 SRCREV_wifihal = "${AUTOREV}"
 SRCREV_FORMAT = "wifihal"
 
 PV = "${RDK_RELEASE}+git${SRCPV}"
-S = "${WORKDIR}/git/src/wifi/"
+S = "${UNPACKDIR}/git/src/wifi/"
 
 DEPENDS += "rdk-wifi-halif libnl libev hostapd wpa-supplicant"
 CFLAGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'extender', '-D_TURRIS_EXTENDER_', '', d)}"
@@ -28,3 +28,4 @@ LDFLAGS:append = " -lnl-nf-3 -lnl-route-3 -lnl-3 -lnl-xfrm-3 -lnl-genl-3 -lev -l
 
 RDEPENDS:${PN}_dunfell += " wpa-supplicant"
 RDEPENDS:${PN} += "wpa-supplicant"
+DEPENDS += "rdk-wifi-halif"
