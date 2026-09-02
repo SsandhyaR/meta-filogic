@@ -16,9 +16,9 @@ do_compile() {
 
 do_install() {
     install -d ${D}${sbindir}
-    install -d ${D}/${libdir}/upgrade
+    install -d ${D}${libdir}/upgrade
     install -m 0755 ${S}/fitblk ${D}${sbindir}
-    install -m 0755 ${S}/fit.sh ${D}/${libdir}/upgrade
+    install -m 0755 ${S}/fit.sh ${D}${libdir}/upgrade
 }
 
 FILES:${PN} += " \

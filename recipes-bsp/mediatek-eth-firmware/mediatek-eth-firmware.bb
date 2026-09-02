@@ -23,6 +23,18 @@ do_install_mt7987() {
     install -m 644 ${UNPACKDIR}/mt7987/* ${D}${base_libdir}/firmware/mediatek/mt7987/
 }
 
+SRC_URI:append:mt7988 = "${@' file://mt7988' if 'wrynose' in (d.getVar('OVERRIDES') or '').split(':') else ''}"
+SRC_URI:append:mt7987 = "${@' file://mt7987' if 'wrynose' in (d.getVar('OVERRIDES') or '').split(':') else ''}"
+
+do_install:append() {
+    for soc in mt7988 mt7987; do
+        if [ -d ${UNPACKDIR}/$soc ]; then
+            install -d ${D}${base_libdir}/firmware/mediatek/$soc/
+            install -m 644 ${UNPACKDIR}/$soc/* ${D}${base_libdir}/firmware/mediatek/$soc/
+        fi
+    done
+}
+
 FILES:${PN} += "${base_libdir}/firmware/mediatek/*"
 
 # Make Mediatek-eth-firmware depend on all of the split-out packages.

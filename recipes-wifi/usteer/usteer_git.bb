@@ -32,7 +32,7 @@ SYSTEMD_SERVICE:${PN}_rdk = "usteer.service"
 do_install:append_rdk() {
 	# Install systemd unit files
 	install -d ${D}${systemd_unitdir}/system
-	install -m 0644 ${WORKDIR}/usteer.service ${D}${systemd_unitdir}/system
+	install -m 0644 ${UNPACKDIR}/usteer.service ${D}${systemd_unitdir}/system
 	sed -i -e 's,@SBINDIR@,${sbindir},g' \
             ${D}${systemd_unitdir}/system/usteer.service
 }
