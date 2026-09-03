@@ -57,8 +57,8 @@ do_install () {
         install
     install -d ${D}${libdir}/pkgconfig
 
-    sed -e s/@VERSION@/${PV}/ ${WORKDIR}/lua.pc.in > ${WORKDIR}/lua.pc
-    install -m 0644 ${WORKDIR}/lua.pc ${D}${libdir}/pkgconfig/
+    sed -e s/@VERSION@/${PV}/ ${UNPACKDIR}/lua.pc.in > ${UNPACKDIR}/lua.pc
+    install -m 0644 ${UNPACKDIR}/lua.pc ${D}${libdir}/pkgconfig/
     rmdir ${D}${datadir}/lua/5.3
     rmdir ${D}${datadir}/lua
 }

@@ -72,6 +72,7 @@ do_fix_compiler_types() {
     sed -i '/#ifdef CONFIG_CC_HAS_COUNTED_BY/{n;s/.*/#ifndef __counted_by\n&\n#endif/}' "${STAGING_KERNEL_DIR}/include/linux/compiler_types.h"
 }
 addtask fix_compiler_types after do_patch before do_compile
+do_fix_compiler_types[depends] += "virtual/kernel:do_shared_workdir"
 # kernel scripts
 do_make_scripts[depends] += "virtual/kernel:do_shared_workdir"
 

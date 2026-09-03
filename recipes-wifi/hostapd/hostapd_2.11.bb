@@ -53,7 +53,7 @@ INSANE_SKIP:${PN} += "file-rdeps"
 
 
 do_configure:append() {
-    install -m 0644 ${WORKDIR}/hostapd-full.config ${B}/.config
+    install -m 0644 ${UNPACKDIR}/hostapd-full.config ${B}/.config
 
     echo "CONFIG_MBO=y" >> ${B}/.config
     echo "CONFIG_WPS_UPNP=y" >> ${B}/.config
@@ -89,7 +89,7 @@ do_configure:append() {
 do_filogic_patches() {
     cd ${S}
         if [ ! -e patch_applied ]; then
-            patch -p1 < ${WORKDIR}/002-rdkb-add-ucode-support.patch
+            patch -p1 < ${UNPACKDIR}/002-rdkb-add-ucode-support.patch
             touch patch_applied
         fi
 }
@@ -106,20 +106,20 @@ do_install() {
          install -d ${D}${sbindir} ${D}${sysconfdir} ${D}${systemd_unitdir}/system/ ${D}${base_libdir}/rdk ${D}${datadir}/hostap
          install -m 0755 ${B}/hostapd ${D}${sbindir}
          install -m 0755 ${B}/hostapd_cli ${D}${sbindir}
-         install -m 0644 ${WORKDIR}/hostapd-2G-EHT.conf ${D}${sysconfdir}/hostapd-2G.conf
-         install -m 0644 ${WORKDIR}/hostapd-5G-EHT.conf ${D}${sysconfdir}/hostapd-5G.conf
-         install -m 0644 ${WORKDIR}/hostapd-6G-EHT.conf ${D}${sysconfdir}/hostapd-6G.conf
-         install -m 0644 ${WORKDIR}/board.json ${D}${sysconfdir}
-         install -m 0644 ${WORKDIR}/hostapd.service ${D}${systemd_unitdir}/system
-         install -m 0755 ${WORKDIR}/hostapd-init-EHT.sh ${D}${base_libdir}/rdk/hostapd-init.sh
-         install -m 0644 ${WORKDIR}/init-uci-config.service ${D}${systemd_unitdir}/system
-         install -m 0755 ${WORKDIR}/mac80211-EHT.sh ${D}${sbindir}/mac80211.sh
+         install -m 0644 ${UNPACKDIR}/hostapd-2G-EHT.conf ${D}${sysconfdir}/hostapd-2G.conf
+         install -m 0644 ${UNPACKDIR}/hostapd-5G-EHT.conf ${D}${sysconfdir}/hostapd-5G.conf
+         install -m 0644 ${UNPACKDIR}/hostapd-6G-EHT.conf ${D}${sysconfdir}/hostapd-6G.conf
+         install -m 0644 ${UNPACKDIR}/board.json ${D}${sysconfdir}
+         install -m 0644 ${UNPACKDIR}/hostapd.service ${D}${systemd_unitdir}/system
+         install -m 0755 ${UNPACKDIR}/hostapd-init-EHT.sh ${D}${base_libdir}/rdk/hostapd-init.sh
+         install -m 0644 ${UNPACKDIR}/init-uci-config.service ${D}${systemd_unitdir}/system
+         install -m 0755 ${UNPACKDIR}/mac80211-EHT.sh ${D}${sbindir}/mac80211.sh
          install -m 0755 ${WORKDIR}/${UC_SRC}/hostapd.uc ${D}${datadir}/hostap
          install -m 0755 ${WORKDIR}/${UC_SRC}/wdev.uc ${D}${datadir}/hostap
          install -m 0755 ${WORKDIR}/${UC_SRC}/common.uc ${D}${datadir}/hostap
          install -m 0755 ${WORKDIR}/${UC_SRC}/wpa_supplicant.uc ${D}${datadir}/hostap
-         install -m 0755 ${WORKDIR}/wifi-detect.uc ${D}${datadir}/hostap
-         install -m 0755 ${WORKDIR}/mac80211.uc ${D}${datadir}/hostap
+         install -m 0755 ${UNPACKDIR}/wifi-detect.uc ${D}${datadir}/hostap
+         install -m 0755 ${UNPACKDIR}/mac80211.uc ${D}${datadir}/hostap
 }
 
 FILES:${PN} += " \

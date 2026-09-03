@@ -20,5 +20,7 @@ S = "${WORKDIR}/git/src/fwupgrade"
 CFLAGS += "-DFEATURE_SUPPORT_RDKLOG"
 CFLAGS:append = " -I=${includedir}/ccsp "
 
+CFLAGS:append:wrynose = " -Wno-error=implicit-function-declaration -Wno-error=return-mismatch "
+
 inherit autotools coverity
 
