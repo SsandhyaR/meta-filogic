@@ -10,13 +10,11 @@ SRC_URI = "git://git.openwrt.org/project/usteer.git;protocol=https;branch=master
 SRCREV = "7d2b17c91baf67419c0ce63dc6c65a7659ab6a5c"
 PV = "git${SRCPV}"
 
-S = "${WORKDIR}/git"
 
 inherit cmake pkgconfig
 
 do_install:append () {
-    install -dm 0755 ${D}/sbin
-    ln -s /usr/sbin/usteerd ${D}/sbin/usteerd
+    install -dm 0755 ${D}${sbindir}
 }
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"

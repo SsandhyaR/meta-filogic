@@ -27,6 +27,7 @@ EXTRA_OEMAKE = "\
     'SOVERSION=openwrt' \
 "
 
+CFLAGS:append:wrynose = " -Wno-error=implicit-function-declaration"
 do_install() {
 	install -D -m 0755 ${B}/libiwinfo.so ${D}${libdir}/libiwinfo.so.openwrt
     install -D -m 0755 ${B}/iwinfo.so ${D}${libdir}/lua/iwinfo.so
