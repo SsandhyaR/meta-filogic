@@ -21,13 +21,13 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 inherit ${@d.getVar('DISTRO', True) == 'rdk' and 'systemd' or 'base'}
 
-SRC_URI:append_rdk += "\
+SRC_URI:append:rdk += "\
     file://usteer.service \
 "
 SYSTEMD_AUTO_ENABLE:${PN} = "disable"
 SYSTEMD_SERVICE:${PN}_rdk = "usteer.service"
 
-do_install:append_rdk() {
+do_install:append:rdk() {
 	# Install systemd unit files
 	install -d ${D}${systemd_unitdir}/system
 	install -m 0644 ${UNPACKDIR}/usteer.service ${D}${systemd_unitdir}/system
