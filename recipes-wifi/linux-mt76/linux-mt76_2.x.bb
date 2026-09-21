@@ -92,7 +92,7 @@ do_install:append () {
     install -m 644 ${UNPACKDIR}/src/firmware/mt7916_eeprom.bin ${D}${base_libdir}/firmware/mediatek/
 }
 
-do_install:append_mt7986 () {
+do_install:append:mt7986 () {
     install -d ${D}/${base_libdir}/firmware/mediatek/
 
     install -m 644 ${UNPACKDIR}/src/firmware/mt7986_rom_patch.bin ${D}${base_libdir}/firmware/mediatek/

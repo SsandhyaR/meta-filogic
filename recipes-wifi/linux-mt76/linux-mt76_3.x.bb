@@ -102,7 +102,7 @@ do_install:append () {
     fi
 }
 
-do_install:append_mt7988 () {
+do_install:append:mt7988 () {
     IS_KERNEL_V6="${@bb.utils.contains('DISTRO_FEATURES','kernelv6','true','false',d)}"
     if [ $IS_KERNEL_V6 = 'false' ]; then
         install -d ${D}/${base_libdir}/firmware/mediatek/
